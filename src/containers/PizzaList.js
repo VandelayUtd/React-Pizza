@@ -2,23 +2,7 @@ import React, { Component } from 'react';
 import Pizza from '../components/Pizza'
 class PizzaList extends Component {
 
-  constructor(){
-    super()
-
-    this.state = {
-      pizzas: []
-    }
-  }
-
-  componentDidMount() { 
-    fetch(`http://localhost:3001/pizzas`)
-    .then(res => res.json())
-    .then(data => this.setState({pizzas: data}))
-  }
-
   render() {
-    const {pizzas} = this.state
-    console.log(pizzas)
     return (
       <table className="table table-striped">
         <thead>
@@ -31,8 +15,8 @@ class PizzaList extends Component {
         </thead>
         <tbody>
           {
-            pizzas.map(pizza => (
-              <Pizza pizza={pizza}/>
+            this.props.pizzas.map(pizza => (
+              <Pizza pizza={pizza} getPizzaId={this.props.getPizzaId}/>
             ))
           }
         </tbody>
